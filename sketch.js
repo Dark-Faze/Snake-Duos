@@ -23,6 +23,13 @@ function setup() {
     y = windowHeight / 2;
     createCanvas(windowWidth, windowHeight);
     food();
+
+    var hammer = new Hammer(document.body, {preventDefault: true});
+    hammer.get('swipe').set({
+        direction: Hammer.DIRECTION_ALL
+    });
+
+    hammer.on("swipe", swiped);
 }
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
@@ -107,17 +114,17 @@ function keyPressed() {
 
 }
 function swiped(event) {
-   // console.log(event);
-    if (event.direction == 4) {
+   console.log(event.direction);
+    if (event.direction == 4) { // Direction Right
         xvel = speed;
         yvel = 0;
-    } else if (event.direction == 8) {
+    } else if (event.direction == 8) { // Direction Up
         xvel = 0;
         yvel = -speed;
-    } else if (event.direction == 16) {
+    } else if (event.direction == 16) { // Direction Down
         xvel = 0;
         yvel = speed;
-    } else if (event.direction == 2) {
+    } else if (event.direction == 2) { // Direction Left
         xvel = -speed;
         yvel = 0;
     }
