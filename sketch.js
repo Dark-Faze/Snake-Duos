@@ -1,6 +1,6 @@
 let x = 350;
 let y = 150;
-let xvel = 0;
+let xvel = 4;
 let yvel = 0;
 let r = 30;
 let mouth = 3 * r / 4;
@@ -13,6 +13,7 @@ let ytail = [];
 let i = 0;
 let c = 0;
 let speed = 4;
+let b=2;
 
 xtail[0] = x;
 ytail[0] = y;
@@ -31,6 +32,7 @@ function food() {
     yf = parseInt(r + Math.random() * (windowHeight - 2 * r));
 }
 function draw() {
+    
     background('#333333');
     x += xvel;
     y += yvel;
@@ -38,13 +40,23 @@ function draw() {
     fill('#e5f022');
     ellipse(xf, yf, r / 2, r / 2);
 
-    fill('#2d2');
-    for (k = i; k < c; k++) {
+      fill('#2d2');
+    for (k = i-10; k < c; k++) {
+        fill('black');
+        ellipse(xtail[k]+xvel, ytail[k]+yvel, r+2, r+2);
+        fill('#2d2');
         ellipse(xtail[k], ytail[k], r, r);
     }
+    strokeWeight(1.5);
+    stroke('black');
+    fill('#2d3');
     
-    fill('#2d2');
-    ellipse(x, y, r, r);
+    ellipse(x, y, r+2, r+2);
+    
+    fill('white');
+    ellipse(x+2*xvel-2*yvel,y-2*xvel+2*yvel,5*r/12,5*r/12);
+    fill('white');
+    ellipse(x+2*xvel+2*yvel,y+2*xvel+2*yvel,5*r/12,5*r/12);
 
     if (x > windowWidth) {
         x = 0;
@@ -94,3 +106,19 @@ function keyPressed() {
     }
 
 }
+function swiped(event) {
+   // console.log(event);
+    if (event.direction == 4) {
+        xvel = speed;
+        yvel = 0;
+    } else if (event.direction == 8) {
+        xvel = 0;
+        yvel = -speed;
+    } else if (event.direction == 16) {
+        xvel = 0;
+        yvel = speed;
+    } else if (event.direction == 2) {
+        xvel = -speed;
+        yvel = 0;
+    }
+  }
