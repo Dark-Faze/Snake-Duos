@@ -23,7 +23,6 @@ function setup() {
     y = windowHeight / 2;
     createCanvas(windowWidth, windowHeight);
     food();
-
     var hammer = new Hammer(document.body, {preventDefault: true});
     hammer.get('swipe').set({
         direction: Hammer.DIRECTION_ALL
@@ -49,8 +48,8 @@ function draw() {
 
       fill('#2d2');
     for (k = i-10; k < c; k++) {
-        fill('black');
-        ellipse(xtail[k]+xvel, ytail[k]+yvel, r+2, r+2);
+     //   fill('black');
+   //     ellipse(xtail[k]+xvel, ytail[k]+yvel, r+2, r+2);
         fill('#2d2');
         ellipse(xtail[k], ytail[k], r, r);
     }
